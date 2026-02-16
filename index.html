@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mani制作 | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@500;700&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-top: #180814;
+      --bg-bottom: #3f4a55;
+      --surface: rgba(12, 12, 15, 0.45);
+      --surface-strong: rgba(8, 8, 10, 0.62);
+      --line: rgba(255, 255, 255, 0.18);
+      --text-main: #f4f5f8;
+      --text-sub: #d0d5df;
+      --accent: #49b6ff;
+      --accent-soft: rgba(73, 182, 255, 0.2);
+      --warm: #ff8f70;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.28);
+      --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      color: var(--text-main);
+      background: linear-gradient(140deg, var(--bg-top) 0%, #241326 34%, var(--bg-bottom) 100%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(4px);
+    }
+
+    body::before {
+      width: 42vw;
+      height: 42vw;
+      top: -12vw;
+      right: -8vw;
+      background: radial-gradient(circle at center, rgba(255, 143, 112, 0.36), rgba(255, 143, 112, 0));
+      animation: drift 13s ease-in-out infinite;
+    }
+
+    body::after {
+      width: 46vw;
+      height: 46vw;
+      left: -14vw;
+      bottom: -14vw;
+      background: radial-gradient(circle at center, rgba(73, 182, 255, 0.32), rgba(73, 182, 255, 0));
+      animation: drift 16s ease-in-out infinite reverse;
+    }
+
+    @keyframes drift {
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(16px, -18px) scale(1.08);
+      }
+    }
+
+    .site-shell {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 14px;
+      z-index: 20;
+      margin: 14px auto 28px;
+      width: min(1120px, 94vw);
+      border: 1px solid var(--line);
+      background: rgba(8, 8, 11, 0.56);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+      border-radius: 999px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      gap: 18px;
+    }
+
+    .brand {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .brand small {
+      color: var(--warm);
+      font-size: 0.7rem;
+      margin-left: 8px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .menu a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: 999px;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      background: var(--accent-soft);
+      color: #cde8ff;
+    }
+
+    section {
+      margin-bottom: 46px;
+      scroll-margin-top: 120px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-main,
+    .hero-side,
+    .panel,
+    .work-card,
+    .cta {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-main {
+      padding: 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-bottom: 16px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: var(--warm);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Kaisei Decol', serif;
+      line-height: 1.3;
+      letter-spacing: 0.03em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      margin-bottom: 18px;
+    }
+
+    .hero-main p {
+      color: var(--text-sub);
+      max-width: 60ch;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      border-radius: 999px;
+      padding: 10px 18px;
+      border: 1px solid transparent;
+      transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #53bcff, #46c7ba);
+      color: #071722;
+      box-shadow: 0 8px 18px rgba(73, 182, 255, 0.34);
+    }
+
+    .btn-ghost {
+      color: var(--text-main);
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-side {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      background: var(--surface-strong);
+    }
+
+    .status-block {
+      border-radius: var(--radius-md);
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .status-label {
+      color: var(--text-sub);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .status-value {
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 18px;
+    }
+
+    .panel {
+      padding: 28px;
+    }
+
+    .panel p,
+    .timeline p,
+    .work-card p,
+    .contact-copy {
+      color: var(--text-sub);
+    }
+
+    .metrics {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .metric {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(0, 0, 0, 0.18);
+      padding: 16px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: clamp(1.25rem, 3vw, 1.8rem);
+      color: #d8edff;
+      margin-bottom: 2px;
+    }
+
+    .metric span {
+      font-size: 0.86rem;
+      color: var(--text-sub);
+    }
+
+    .timeline {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(0, 0, 0, 0.22);
+    }
+
+    .timeline h3 {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .timeline ul {
+      list-style: none;
+      display: grid;
+      gap: 11px;
+    }
+
+    .timeline li {
+      padding-left: 14px;
+      border-left: 2px solid rgba(73, 182, 255, 0.36);
+    }
+
+    .timeline time {
+      display: inline-block;
+      margin-bottom: 2px;
+      color: #c7d8ef;
+      font-size: 0.84rem;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-heading p {
+      color: var(--text-sub);
+      font-size: 0.94rem;
+    }
+
+    .works {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .work-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 230px;
+      transition: transform 0.26s ease, border-color 0.26s ease;
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(73, 182, 255, 0.45);
+    }
+
+    .work-card h3 {
+      font-size: 1.12rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 4px 10px;
+      font-size: 0.74rem;
+      color: #d7e9ff;
+      background: rgba(255, 255, 255, 0.05);
+      white-space: nowrap;
+    }
+
+    .work-link {
+      margin-top: 2px;
+      color: #b8ddff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .work-link:hover {
+      color: #e2f2ff;
+    }
+
+    .cta {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1.15fr auto;
+      gap: 18px;
+      align-items: center;
+      background: linear-gradient(140deg, rgba(17, 17, 20, 0.62), rgba(57, 33, 44, 0.56));
+    }
+
+    .cta .btn-primary {
+      padding: 12px 20px;
+      white-space: nowrap;
+    }
+
+    footer {
+      text-align: center;
+      color: #c7cddb;
+      font-size: 0.84rem;
+      padding: 8px 0 30px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .hero,
+      .about-grid,
+      .works,
+      .cta {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .works {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .top-nav {
+        border-radius: 20px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .menu {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .menu a {
+        padding: 6px 11px;
+      }
+
+      .hero,
+      .about-grid,
+      .works,
+      .cta {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main,
+      .hero-side,
+      .panel,
+      .cta {
+        padding: 22px;
+      }
+
+      h1 {
+        font-size: clamp(1.8rem, 9vw, 2.5rem);
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-nav">
+    <div class="brand">mani制作<small>portfolio</small></div>
+    <nav>
+      <ul class="menu">
+        <li><a href="#home" class="active">ホーム</a></li>
+        <li><a href="#about">プロフィール</a></li>
+        <li><a href="#portfolio">作品</a></li>
+        <li><a href="#contact">連絡先</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="site-shell">
+    <section id="home" class="hero reveal">
+      <article class="hero-main">
+        <span class="eyebrow">student builder / ui explorer</span>
+        <h1>作って、壊して、
+          もう一段よくする。
+        </h1>
+        <p>
+          mani制作のアトリエへようこそ。学校生活で「これ不便だな」と感じた瞬間を、その日のうちにWebで解決するのが得意です。
+          実験感のあるUIと実用性のバランスを意識して、毎回デザインを更新しています。
+        </p>
+        <div class="button-row">
+          <a href="#portfolio" class="btn btn-primary">作品を見る</a>
+          <a href="mailto:mani351520@proton.me" class="btn btn-ghost">連絡する</a>
+        </div>
+      </article>
+
+      <aside class="hero-side" aria-label="現在のステータス">
+        <div class="status-block">
+          <span class="status-label">Current Focus</span>
+          <p class="status-value">学習効率を上げる小さなWeb道具を継続開発中</p>
+        </div>
+        <div class="status-block">
+          <span class="status-label">Design Mood</span>
+          <p class="status-value">ガラス質感 + 落ち着いたダークグラデーション</p>
+        </div>
+        <div class="status-block">
+          <span class="status-label">Policy</span>
+          <p class="status-value">毎回1つは新しい表現を試す / 実用性は落とさない</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="about-grid reveal">
+      <article class="panel">
+        <h2>maniについて</h2>
+        <p>
+          WebのUIが好きな学生です。中学から高校にかけて、日常の「面倒」を減らすためのサイトやツールを作り続けています。
+          派手な見た目だけで終わらせず、実際に使ってもらえる導線や操作感まで詰めるのがこだわりです。
+        </p>
+
+        <div class="timeline">
+          <h3>制作の流れ</h3>
+          <ul>
+            <li>
+              <time>Step 1</time>
+              <p>身近な不便を1つ決める</p>
+            </li>
+            <li>
+              <time>Step 2</time>
+              <p>最小の機能とUIを先に作る</p>
+            </li>
+            <li>
+              <time>Step 3</time>
+              <p>使いながら色・余白・動きの完成度を上げる</p>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>制作メモ</h2>
+        <div class="metrics">
+          <div class="metric">
+            <strong>5+</strong>
+            <span>公開している制作物</span>
+          </div>
+          <div class="metric">
+            <strong>中学〜現在</strong>
+            <span>Web制作を継続</span>
+          </div>
+          <div class="metric">
+            <strong>学校課題起点</strong>
+            <span>実用ツールを優先制作</span>
+          </div>
+          <div class="metric">
+            <strong>UI重視</strong>
+            <span>見た目と操作感を両立</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="portfolio" class="reveal">
+      <div class="section-heading">
+        <h2>ポートフォリオ</h2>
+        <p>学校生活で本当に使うことを前提に作ったUI集（主にGitHubリポジトリへリンク）</p>
+      </div>
+
+      <div class="works">
+        <article class="work-card">
+          <h3>赤シート</h3>
+          <p>色フィルターを切り替えながら暗記用に使えるシンプル学習ツール。</p>
+          <a class="work-link" href="https://github.com/mani1261790/Red-Sheet" target="_blank" rel="noopener noreferrer">View Repository ↗</a>
+          <div class="tags">
+            <span class="tag">Study</span>
+            <span class="tag">Filter UI</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <h3>単語テスト</h3>
+          <p>深夜テンションから生まれた、使い勝手最優先の単語トレーニングページ。</p>
+          <a class="work-link" href="https://github.com/mani1261790/Words-Test" target="_blank" rel="noopener noreferrer">View Repository ↗</a>
+          <div class="tags">
+            <span class="tag">Quiz</span>
+            <span class="tag">Keyboard First</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <h3>25分タイマー</h3>
+          <p>無音環境でも気づける視覚通知を重視した、集中用の学習タイマー。</p>
+          <a class="work-link" href="https://github.com/mani1261790/timer" target="_blank" rel="noopener noreferrer">View Repository ↗</a>
+          <div class="tags">
+            <span class="tag">Focus</span>
+            <span class="tag">Silent Alert</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <h3>ファイル共有サイト</h3>
+          <p>端末制限が厳しい環境でも、必要なファイルを扱いやすくする共有導線を実装。</p>
+          <a class="work-link" href="https://github.com/mani1261790/maniFile" target="_blank" rel="noopener noreferrer">View Repository ↗</a>
+          <div class="tags">
+            <span class="tag">Utility</span>
+            <span class="tag">Workflow</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <h3>ノート用紙PDF</h3>
+          <p>手書き学習向けに調整したオリジナル罫線。3年間使い続けている実用品。</p>
+          <a class="work-link" href="ノート用紙.pdf">Get PDF →</a>
+          <div class="tags">
+            <span class="tag">Printable</span>
+            <span class="tag">Long Use</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <h3>PHOTO-TEXTE</h3>
+          <p>写真から課題テキストを生成する、学習支援系の自動化アプリ。</p>
+          <a class="work-link" href="https://github.com/mani1261790/PHOTO-TEXTE" target="_blank" rel="noopener noreferrer">View Repository ↗</a>
+          <div class="tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Automation</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <h3>Research-Scrapper</h3>
+          <p>論文リサーチの探索と整理を効率化するためのプロジェクト。</p>
+          <a class="work-link" href="https://github.com/mani1261790/Research-Scrapper" target="_blank" rel="noopener noreferrer">View Repository ↗</a>
+          <div class="tags">
+            <span class="tag">Research</span>
+            <span class="tag">TypeScript</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <h3>mictogpt_walkthrough</h3>
+          <p>microgpt の学習過程をまとめた解説ノート。</p>
+          <a class="work-link" href="https://github.com/mani1261790/mictogpt_walkthrough" target="_blank" rel="noopener noreferrer">View Repository ↗</a>
+          <div class="tags">
+            <span class="tag">Notebook</span>
+            <span class="tag">Walkthrough</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <h3>その他のリポジトリ</h3>
+          <p>新作や実験中のコードも含めて、GitHubプロフィールから一覧で確認できます。</p>
+          <a class="work-link" href="https://github.com/mani1261790/" target="_blank" rel="noopener noreferrer">Open GitHub Profile ↗</a>
+          <div class="tags">
+            <span class="tag">All Repos</span>
+            <span class="tag">Latest Updates</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="cta reveal">
+      <div>
+        <h2>連絡先</h2>
+        <p class="contact-copy">
+          気づいた点や改善アイデア、共同制作の相談などはメールでどうぞ。
+          小さな提案でも歓迎です。
+        </p>
+      </div>
+      <a class="btn btn-primary" href="mailto:mani351520@proton.me">mani351520@proton.me</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 mani制作. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const navLinks = document.querySelectorAll('.menu a');
+    const sections = document.querySelectorAll('main section');
+
+    const setActiveLink = () => {
+      let current = 'home';
+      sections.forEach((section) => {
+        const top = section.offsetTop - 140;
+        if (window.scrollY >= top) {
+          current = section.id;
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+      });
+    };
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    reveals.forEach((item) => observer.observe(item));
+    window.addEventListener('scroll', setActiveLink);
+    setActiveLink();
+  </script>
+</body>
+</html>
