@@ -554,9 +554,26 @@
         padding-top: 4px;
       }
 
+      .top-nav.menu-open .menu {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 6px;
+      }
+
+      .top-nav.menu-open .menu li {
+        width: 100%;
+      }
+
       .menu a {
         padding: 6px 11px;
         font-size: 0.88rem;
+      }
+
+      .top-nav.menu-open .menu a {
+        display: block;
+        width: 100%;
+        text-align: center;
       }
 
       .hero,
