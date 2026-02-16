@@ -107,6 +107,13 @@
       gap: 18px;
     }
 
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
     .brand {
       font-family: 'Kaisei Decol', serif;
       font-size: 1.05rem;
@@ -120,6 +127,35 @@
       margin-left: 8px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+    }
+
+    .top-nav nav {
+      margin-left: auto;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+      cursor: pointer;
+      padding: 8px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 1.8px;
+      background: currentColor;
+      border-radius: 999px;
+      transition: transform 0.24s ease, opacity 0.24s ease;
     }
 
     .menu {
@@ -386,6 +422,10 @@
 
     .work-card h3 {
       font-size: 1.12rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: 0.02em;
     }
 
     .tags {
@@ -416,6 +456,7 @@
       display: inline-flex;
       gap: 6px;
       align-items: center;
+      max-width: 100%;
     }
 
     .work-link:hover {
@@ -470,18 +511,52 @@
     @media (max-width: 768px) {
       .top-nav {
         border-radius: 20px;
-        align-items: flex-start;
         flex-direction: column;
-        gap: 10px;
+        align-items: stretch;
+        gap: 8px;
+        padding: 10px 12px;
+      }
+
+      .brand-row {
+        width: 100%;
+      }
+
+      .top-nav nav {
+        display: none;
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .top-nav.menu-open nav {
+        display: block;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .top-nav.menu-open .nav-toggle span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .top-nav.menu-open .nav-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .top-nav.menu-open .nav-toggle span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
       }
 
       .menu {
         width: 100%;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 8px;
+        padding-top: 4px;
       }
 
       .menu a {
         padding: 6px 11px;
+        font-size: 0.88rem;
       }
 
       .hero,
@@ -489,6 +564,10 @@
       .works,
       .cta {
         grid-template-columns: 1fr;
+      }
+
+      .site-shell {
+        width: min(1120px, 94vw);
       }
 
       .hero-main,
@@ -505,13 +584,51 @@
       .metrics {
         grid-template-columns: 1fr;
       }
+
+      .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .work-card {
+        min-height: auto;
+      }
+
+      .work-card h3 {
+        font-size: 1.02rem;
+      }
+
+      .button-row {
+        width: 100%;
+      }
+
+      .button-row .btn {
+        width: 100%;
+      }
+
+      .cta .btn-primary {
+        width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+
+      .contact-copy {
+        margin-bottom: 8px;
+      }
     }
   </style>
 </head>
 <body>
   <header class="top-nav">
-    <div class="brand">mani<small>portfolio</small></div>
-    <nav>
+    <div class="brand-row">
+      <div class="brand">mani<small>portfolio</small></div>
+      <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-controls="site-nav" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <nav id="site-nav">
       <ul class="menu">
         <li><a href="#home" class="active">ホーム</a></li>
         <li><a href="#about">プロフィール</a></li>
@@ -720,8 +837,22 @@
   </footer>
 
   <script>
+    const topNav = document.querySelector('.top-nav');
+    const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelectorAll('.menu a');
     const sections = document.querySelectorAll('main section');
+
+    const closeMenu = () => {
+      topNav.classList.remove('menu-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'メニューを開く');
+    };
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = topNav.classList.toggle('menu-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      navToggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+    });
 
     const setActiveLink = () => {
       let current = 'home';
@@ -736,6 +867,20 @@
         link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
       });
     };
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          closeMenu();
+        }
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        closeMenu();
+      }
+    });
 
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
