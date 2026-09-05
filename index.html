@@ -387,6 +387,29 @@
       font-size: 0.84rem;
     }
 
+    #career { scroll-margin-top: 110px; }
+
+    .career-panel { padding: clamp(24px, 5vw, 56px); }
+    .career-list { list-style: none; margin-top: 30px; }
+    .career-item { --career-axis: 8px; position: relative; padding: 0 0 28px 34px; }
+    .career-item::before {
+      content: ""; position: absolute; left: var(--career-axis); top: 16px; bottom: -16px;
+      transform: translateX(-50%);
+      width: 1px; background: rgba(73, 182, 255, 0.38);
+    }
+    .career-item:last-child { padding-bottom: 0; }
+    .career-item:last-child::before { display: none; }
+    .career-item::after {
+      content: ""; position: absolute; left: var(--career-axis); top: 8px;
+      box-sizing: border-box; transform: translateX(-50%);
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 2px solid var(--accent); background: #242333;
+    }
+    .career-date { display: block; color: #b8ddff; font-size: 0.85rem; margin-bottom: 5px; }
+    .career-item p { max-width: 780px; overflow-wrap: anywhere; }
+    .career-detail { color: var(--text-sub); font-size: 0.93rem; margin-top: 4px; }
+    @media (max-width: 768px) { #career { scroll-margin-top: 135px; } }
+
     .section-heading {
       display: flex;
       justify-content: space-between;
@@ -649,6 +672,7 @@
       <ul class="menu">
         <li><a href="#home" class="active">ホーム</a></li>
         <li><a href="#about">プロフィール</a></li>
+        <li><a href="#career">経歴</a></li>
         <li><a href="#portfolio">作品</a></li>
         <li><a href="#contact">連絡先</a></li>
       </ul>
@@ -737,6 +761,82 @@
           </div>
         </div>
       </article>
+    </section>
+
+    <section id="career" aria-labelledby="career-heading">
+      <div class="panel career-panel">
+        <h2 id="career-heading">経歴</h2>
+        <ol class="career-list">
+          <li class="career-item">
+            <span class="career-date">中高時代</span>
+            <p>大阪明星学園で学ぶ（中高一貫）</p>
+          </li>
+          <li class="career-item">
+            <span class="career-date">中学1年</span>
+            <p>Web制作を始める</p>
+          </li>
+          <li class="career-item">
+            <span class="career-date">中学3年</span>
+            <p>カナダへ短期留学</p>
+            <p class="career-detail">海外のサーバーを借りて日記サイトを制作し、毎日更新。</p>
+          </li>
+          <li class="career-item">
+            <span class="career-date">高校2年・夏</span>
+            <p>「次世代リーダー養成プログラム」でハーバード大学を訪問</p>
+            <p class="career-detail">LLMをメンタルヘルスに活用する研究の話を聞き、AIの研究に進むことを決意。</p>
+          </li>
+          <li class="career-item">
+            <span class="career-date">高校時代</span>
+            <p>日本政策金融公庫「第11回高校生ビジネスプラングランプリ」セミファイナリスト賞受賞</p>
+          </li>
+          <li class="career-item">
+            <time class="career-date" datetime="2025-04">2025年4月</time>
+            <p>大阪公立大学 工学部 情報工学科に入学</p>
+          </li>
+          <li class="career-item">
+            <time class="career-date" datetime="2025-09">2025年9月</time>
+            <p>グローバル消費インテリジェンス寄附講座（GCI）2025 Summer 修了</p>
+          </li>
+          <li class="career-item">
+            <time class="career-date" datetime="2025-10">2025年10月</time>
+            <p>AI起業サマープログラム 2025 修了</p>
+            <p class="career-detail">AIと半導体講座 2025 Summer 修了</p>
+          </li>
+          <li class="career-item">
+            <time class="career-date" datetime="2025-12">2025年12月</time>
+            <p>大規模言語モデル基礎編 集中講義 2025 修了</p>
+          </li>
+          <li class="career-item">
+            <time class="career-date" datetime="2026-01">2026年1月</time>
+            <p>Deep Learning 基礎講座 2025 Autumn 修了</p>
+          </li>
+          <li class="career-item">
+            <time class="career-date" datetime="2026-02">2026年2月</time>
+            <p>GCIベーシック 0から始めるデータサイエンス講座 2025 Autumn 修了</p>
+          </li>
+          <li class="career-item">
+            <time class="career-date" datetime="2026-03">2026年3月</time>
+            <p>フランスに1か月間留学</p>
+            <p class="career-detail">大規模言語モデル応用編 集中講義 2025 修了<br>Deep Learning 応用講座 世界モデル 2025 修了</p>
+          </li>
+          <li class="career-item">
+            <time class="career-date" datetime="2026-04">2026年4月</time>
+            <p>OIF 副代表に就任</p>
+          </li>
+          <li class="career-item">
+            <time class="career-date" datetime="2026-05">2026年5月</time>
+            <p>株式会社Liberkaの設立に参加し、取締役CTOに就任</p>
+          </li>
+          <li class="career-item">
+            <time class="career-date" datetime="2026-05">2026年5月</time>
+            <p>SecHack365 2026年度 融合駆動コースに採択</p>
+          </li>
+          <li class="career-item">
+            <time class="career-date" datetime="2026-07">2026年7月</time>
+            <p>AIエンジニアリング実践講座 2026 トライアルプログラム 修了</p>
+          </li>
+        </ol>
+      </div>
     </section>
 
     <section id="portfolio" class="reveal">
