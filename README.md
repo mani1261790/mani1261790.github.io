@@ -12,9 +12,11 @@
 
 ## GitHub活動カレンダー
 
-`python3 scripts/update-contributions.py` でGitHubの公開プロフィールから直近1年のカレンダーを取得し、`index.html` の該当部分だけ更新します。閲覧時の外部サービス接続やトークンは不要です。取得形式が変わった場合は更新を失敗させ、前回の表示を残します。
+ページを開くたびに `assets/contributions.js` が公開の [GitHub Contributions API](https://github.com/grubersjoe/github-contributions-api) に接続します。API側のキャッシュは最大1時間です。トークンは使用せず、日付の連続性・件数・合計値・鮮度を検査してから表示を更新します。タイムアウト・不正な応答・通信失敗時は保存データとその取得日を表示します。
 
-`.github/workflows/update-contributions.yml` は毎日06:23 JSTに更新し、現在のmainブランチを配信するGitHub Pagesの再ビルドを要求します。Actionsでの書き込み・Pagesビルド権限が必要です。取得日は画面にも表示します。
+`python3 scripts/update-contributions.py` でGitHubの公開プロフィールから直近1年のカレンダーを取得し、`index.html` の該当部分だけ更新します。この保存データは、ページ接続時の取得に失敗した場合にも表示します。取得形式が変わった場合は更新を失敗させ、前回の表示を残します。
+
+`.github/workflows/update-contributions.yml` は毎日06:23 JSTに更新し、現在のmainブランチを配信するGitHub Pagesの再ビルドを要求します。Actionsでの書き込み・Pagesビルド権限が必要です。保存データの取得日は画面にも表示します。
 
 ## 作品画像
 
