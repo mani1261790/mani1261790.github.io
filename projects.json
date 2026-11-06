@@ -39,7 +39,7 @@
         {
           "src": "assets/projects/phototexte-editor.jpg",
           "alt": "写真に添えたフランス語と修正前の文章を比較する画面",
-          "caption": "文章の変更前後を比較する画面（自己PR掲載）",
+          "caption": "文章の変更前後を比較する画面",
           "width": 591,
           "height": 1280
         }
@@ -81,7 +81,7 @@
         {
           "src": "assets/projects/noema-mobile.jpg",
           "alt": "スマートフォンのNoemaで記事カードと新着記事を表示",
-          "caption": "スマートフォンでの記事一覧（自己PR掲載）",
+          "caption": "スマートフォンでの記事一覧",
           "width": 591,
           "height": 1280
         }

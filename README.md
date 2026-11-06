@@ -8,7 +8,7 @@
 
 編集後は `python3 scripts/build-portfolio.py` を実行し、生成された `index.html` も一緒にコミットしてください。作品は静的HTMLとして出力されるため、JavaScriptが無効でも読めます。
 
-2026-11-07の更新では、添付の自己PRとGitHub公開リポジトリのREADMEを参照しました。Design-Qualityの説明は自己PRに基づき、公開リポジトリへのリンクは設けていません。ToolUseProxy-showcaseはToolUseProxyの検証デモとして掲載しています。フォークと、このポートフォリオ自体は作品の追加対象にしていません。
+Design-Qualityには公開リポジトリへのリンクを設けていません。ToolUseProxy-showcaseはToolUseProxyの検証デモとして掲載しています。フォークと、このポートフォリオ自体は作品の追加対象にしていません。
 
 作品の `id` はモーダルを識別する固定値です。`details` に見出しと本文を追加すると詳しい紹介に反映されます。カード全体から開けて、閉じるボタン・Escape・背景クリックで一覧に戻ります。JavaScript無効時も概要と外部リンクは表示されます。
 
@@ -22,4 +22,4 @@
 
 `projects.json` の `images` に `src`・`alt`・`caption`・`width`・`height` を指定すると、紹介モーダルの冒頭に画像が表示されます。画像は `assets/projects/` に置きます。原寸画像は別タブで開き、紹介モーダルの位置を保持します。
 
-2026-11-07追加分：PhotoTexteの比較画面とNoemaのスマホ画面は提供された自己PR PDFから抽出。Noemaトップ・25分タイマー・ToolUseProxyの公開デモログは公開サイトを撮影。Vidarrは公開リポジトリの `docs/branding/vidarr-logo-1024.png`、ノート用紙は既存の配布PDFの1ページ目を使用しています。画像に合わせて架空のUIは作成していません。
+2026-11-07追加分：PhotoTexteの比較画面とNoemaのスマホ画面を掲載。Noemaトップ・25分タイマー・ToolUseProxyの公開デモログは公開サイトを撮影。Vidarrは公開リポジトリの `docs/branding/vidarr-logo-1024.png`、ノート用紙は既存の配布PDFの1ページ目を使用しています。画像に合わせて架空のUIは作成していません。
