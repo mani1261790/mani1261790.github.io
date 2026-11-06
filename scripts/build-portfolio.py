@@ -36,7 +36,7 @@ for project in catalog['projects']:
         figures.append(f'''<figure class="project-image"><a href="{escape(src, quote=True)}" target="_blank" rel="noopener noreferrer" aria-label="{escape(image['alt'], quote=True)}（画像を別タブで開く）"><img src="{escape(src, quote=True)}" alt="{escape(image['alt'], quote=True)}" width="{int(image['width'])}" height="{int(image['height'])}" loading="lazy" decoding="async"></a><figcaption>{escape(image['caption'])} <span aria-hidden="true">↗︎</span></figcaption></figure>''')
     gallery = f'<div class="project-gallery">{"".join(figures)}</div>' if figures else ''
     dialogs.append(f'''      <dialog class="project-dialog" id="project-{key}" aria-labelledby="title-{key}">
-        <div class="dialog-toolbar"><span class="tag">{category}</span><button class="dialog-close" type="button" autofocus aria-label="{name}の紹介を閉じる">閉じる <span aria-hidden="true">×</span></button></div>
+        <div class="dialog-toolbar"><span class="tag">{category}</span><button class="dialog-close" type="button" autofocus aria-label="{name}の紹介を閉じる"><span aria-hidden="true">×</span></button></div>
         <div class="dialog-content">
           <h2 id="title-{key}">{name}</h2>
           {gallery}
